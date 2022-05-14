@@ -14,6 +14,7 @@ namespace AssetManager.Models
         [Required]
         public string SerialNumber { get; set; }
         public string Manufacturer { get; set; }
+        [DataType(DataType.Date)]
         public DateTime AcquiredOn { get; set; }
         public int CurrentUser { get; set; }
     }

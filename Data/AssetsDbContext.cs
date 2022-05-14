@@ -61,9 +61,9 @@ namespace AssetManager.Data
             modelBuilder.Entity<Asset>().HasData(theAssets);
 
             modelBuilder.Entity<User>().HasData(
-                new User { Id = 1, Username = "Tinashe Chitakunye", Department = "infrastructure development", UserId = Guid.NewGuid(), JoinedOn = DateTime.Now, },
-                new User { Id = 2, Username = "Kimberly Manyonga", Department = "infrastructure development", UserId = Guid.NewGuid(), JoinedOn = DateTime.Now } ,
-                new User { Id = 3, Username = "Richard Dzingai", Department = "infrastructure development", UserId = Guid.NewGuid(), JoinedOn = DateTime.Now }
+                new User { Id = 1, Username = "Tinashe Chitakunye", Department = "Infrastructure Development", UserId = Guid.NewGuid(), JoinedOn = DateTime.Now, },
+                new User { Id = 2, Username = "Kimberly Manyonga", Department = "Research and Development", UserId = Guid.NewGuid(), JoinedOn = DateTime.Now } ,
+                new User { Id = 3, Username = "Richard Dzingai", Department = "Digital Marketing", UserId = Guid.NewGuid(), JoinedOn = DateTime.Now }
             );
 
 

@@ -1,36 +1,72 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using AssetManager.Data;
 using AssetManager.Interfaces;
 using AssetManager.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace AssetManager.Services
 {
     public class AssetService : IAssetRepository
     {
-        
-        public void CreateAsset(Asset asset)
+        private readonly AssetsDbContext _context;
+
+        public AssetService(AssetsDbContext context)
         {
-            throw new System.NotImplementedException();
+            _context = context;
+        }
+        
+        public void CreateAsset(Asset newAsset)
+        {
+            if (newAsset == null)
+                throw new ArgumentNullException(nameof(newAsset));
+            
+            _context.Assets.Add(newAsset);
+            _context.SaveChanges();
         }
 
-        public void DeleteAsset(int id)
+        public bool DeleteAsset(int id)
         {
-            throw new System.NotImplementedException();
+            var assetToDelete = _context.Assets.FirstOrDefault(p => p.Id == id);
+            if (assetToDelete != null) 
+            {
+                _context.Assets.Remove(assetToDelete);
+                _context.SaveChanges();
+            }
+            else
+                return false;
+
+            return true;
         }
 
         public IEnumerable<Asset> GetAllAssets()
         {
-            throw new System.NotImplementedException();
+            return _context.Assets;
         }
 
-        public Asset GetAssetById()
+        public Asset GetAssetById(int id)
         {
-            throw new System.NotImplementedException();
+            return _context.Assets.FirstOrDefault(p => p.Id == id);
         }
 
-        public void ReplaceAssetById(int id, Asset asset)
+        public bool ReplaceAssetById(int id, Asset replacementAsset)
         {
-            throw new System.NotImplementedException();
+            _context.Entry(replacementAsset).State = EntityState.Modified;
+
+            try 
+            {
+                _context.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (_context.Assets.FirstOrDefault(p => p.Id == id) == null)
+                    return false;
+                else
+                    throw;                
+            }
+
+            return true;
         }
 
         public void UpdateAssetbyId(int id, Asset asset)

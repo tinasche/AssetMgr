@@ -1,37 +1,77 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using AssetManager.Data;
 using AssetManager.Interfaces;
 using AssetManager.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace AssetManager.Services
 {
     public class UserService : IUserRepository
     {
-        public void CreateUser(User User)
+        private readonly AssetsDbContext _context;
+
+        public UserService(AssetsDbContext context)
         {
-            throw new System.NotImplementedException();
+            _context = context;
+        }
+        
+        public void CreateUser(User newUser)
+        {
+            if (newUser == null)
+                throw new ArgumentNullException(nameof(newUser));
+
+            newUser.UserId = Guid.NewGuid();
+            
+            _context.Users.Add(newUser);
+            _context.SaveChanges();
         }
 
-        public void DeleteUser(int id)
+        public bool DeleteUser(int id)
         {
-            throw new System.NotImplementedException();
+            var userToDelete = _context.Users.FirstOrDefault(p => p.Id == id);
+            if (userToDelete != null) 
+            {
+                _context.Users.Remove(userToDelete);
+                _context.SaveChanges();
+            }
+            else
+                return false;
+
+            return true;
         }
 
-        public List<User> GetAllUsers()
+        public IEnumerable<User> GetAllUsers()
         {
-            throw new System.NotImplementedException();
+            return _context.Users;
         }
 
-        public User GetUserById()
+        public User GetUserById(int id)
         {
-            throw new System.NotImplementedException();
+            return _context.Users.FirstOrDefault(p => p.Id == id);
         }
 
-        public void ReplaceUserById(int id, User User)
+        public bool ReplaceUserById(int id, User replacementUser)
         {
-            throw new System.NotImplementedException();
+            _context.Entry(replacementUser).State = EntityState.Modified;
+
+            try 
+            {
+                _context.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (_context.Users.FirstOrDefault(p => p.Id == id) == null)
+                    return false;
+                else
+                    throw;                
+            }
+
+            return true;
         }
 
-        public void UpdateUserbyId(int id, User User)
+        public void UpdateUserbyId(int id, User asset)
         {
             throw new System.NotImplementedException();
         }

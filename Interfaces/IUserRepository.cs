@@ -7,21 +7,21 @@ namespace AssetManager.Interfaces
     {
          
         // GET: Returns all Users
-        public List<User> GetAllUsers();
+        public IEnumerable<User> GetAllUsers();
 
         // GET: Returns an User by its id
-        public User GetUserById();
+        public User GetUserById(int id);
 
         // POST: Create a new User record
         public void CreateUser(User User);
         
         // PUT: Full update of entire User record 
-        public void ReplaceUserById(int id, User User);
+        public bool ReplaceUserById(int id, User User);
 
         // PATCH: Partial update of User record
         public void UpdateUserbyId(int id, User User);
 
         // DELETE: Delete a record by its id
-        public void DeleteUser(int id);
+        public bool DeleteUser(int id);
     }
 }

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AssetManager.Data;
 using AssetManager.Interfaces;
 using AssetManager.Services;
 using Microsoft.AspNetCore.Builder;
@@ -34,10 +35,9 @@ namespace AssetManager
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "AssetManager", Version = "v1" });
             });
-            
+            services.AddDbContext<AssetsDbContext>();
             services.AddScoped<IAssetRepository, AssetService>();
             services.AddScoped<IUserRepository, UserService>();
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -11,7 +11,7 @@ namespace AssetManager.Models
         public string Username { get; set; }
         public string Department { get; set; }
         public Guid UserId { get; set; }
+        [DataType(DataType.Date)]
         public DateTime JoinedOn { get; set; }
-        // public List<Asset> AssetsInCustody { get; set; }
     }
 }
