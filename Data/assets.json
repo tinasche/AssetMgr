@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "name": "Samsung Galaxy M11",
+        "type": "smartphone",
+        "serialNumber": "0094KC029M",
+        "manufacturer": "Samsung",
+        "acquiredOn": "",
+        "currentUser": 1
+    },
+    {
+        "id": 2,
+        "name": "Samsung Galaxy Tab S4-A",
+        "type": "tablet",
+        "serialNumber": "099393V54VT",
+        "manufacturer": "Samsung",
+        "acquiredOn": "",
+        "currentUser": 2
+    },
+    {
+        "id": 3,
+        "name": "Lenovo Thinkpad T480s",
+        "type": "laptop",
+        "serialNumber": "PC3029m4",
+        "manufacturer": "Lenovo",
+        "acquiredOn": "",
+        "currentUser": 1
+    },
+    {
+        "id": 4,
+        "name": "Mac Book Pro Express",
+        "type": "laptop",
+        "serialNumber": "MC343302",
+        "manufacturer": "Apple",
+        "acquiredOn": "",
+        "currentUser": 3
+    }
+]

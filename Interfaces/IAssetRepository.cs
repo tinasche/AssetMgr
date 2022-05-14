@@ -6,7 +6,7 @@ namespace AssetManager.Interfaces
     public interface IAssetRepository
     {
         // GET: Returns all assets
-        public List<Asset> GetAllAssets();
+        public IEnumerable<Asset> GetAllAssets();
 
         // GET: Returns an asset by its id
         public Asset GetAssetById();

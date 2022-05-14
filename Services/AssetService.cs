@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using AssetManager.Interfaces;
 using AssetManager.Models;
@@ -6,6 +7,7 @@ namespace AssetManager.Services
 {
     public class AssetService : IAssetRepository
     {
+        
         public void CreateAsset(Asset asset)
         {
             throw new System.NotImplementedException();
@@ -16,7 +18,7 @@ namespace AssetManager.Services
             throw new System.NotImplementedException();
         }
 
-        public List<Asset> GetAllAssets()
+        public IEnumerable<Asset> GetAllAssets()
         {
             throw new System.NotImplementedException();
         }
