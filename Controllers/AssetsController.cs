@@ -66,5 +66,11 @@ namespace AssetManager.Controllers
 
             return NoContent();
         }
+
+        [HttpPatch]
+        public ActionResult UpdateAssetById(int id, Asset updatedAsset)
+        {
+            return Ok();
+        }
     }
 }
